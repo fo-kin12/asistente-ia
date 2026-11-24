@@ -1,11 +1,11 @@
 # Asistente del clan · Maqueta (Semana 1)
 
 Prototipo en HTML y CSS del asistente de conocimiento. Todavía no hay un modelo conectado: es la maqueta.
-Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y usa la barra «Ver estado» para recorrer los estados.
+Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y mira cómo los estados **cambian solos cada 4 segundos** en la misma pantalla (vacío → cargando → respuesta → error → tema delicado → coach), sin JavaScript. Toca un paso del indicador para dejarlo fijo y **▶ Automático** para volver a reproducir.
 
 ## Presentación
 
-📽️ [Ver la presentación del reto (PDF)](docs/presentacion-semana1.pdf): qué pedía el reto, el flujo, los estados, el código y la prueba con otro equipo.
+📽️ [Ver la presentación del reto (PDF)](docs/presentacion-semana1.pdf): versión corta para una exposición de 5 minutos (7 diapositivas).
 
 ## Caso de uso
 

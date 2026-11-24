@@ -27,6 +27,7 @@ body {
   text-decoration: none;
 }
 .demo-nav a:hover { border-color: #5d44ff; }
+.demo-nav .auto { font-weight: 600; color: #5d44ff; }
 
 /* ---------- Contenedor ---------- */
 .app {
@@ -76,15 +77,72 @@ body {
   font-size: .9rem;
 }
 
-/* ---------- Estados (navegables con :target) ---------- */
-.estados { flex: 1; display: flex; }
-.estado { display: none; scroll-margin-top: 100vh; } /* evita el salto al cambiar de estado */
-.estado:target { display: flex; }
-/* Si no hay ningún estado seleccionado, se muestra el vacío */
-.estados:not(:has(.estado:target)) #vacio { display: flex; }
+/* ---------- Estados: se cambian solos (solo CSS) ----------
+   Las 6 secciones se apilan en la misma celda de un grid.
+   Cada una se muestra 4 s de un ciclo de 24 s, una tras otra. */
+.estados {
+  flex: 1;
+  display: grid;
+}
+.estado {
+  grid-row: 1;
+  grid-column: 1;              /* todas en la misma celda: una encima de otra */
+  display: flex;
+  opacity: 0;
+  visibility: hidden;          /* oculta = no se puede clicar */
+  scroll-margin-top: 100vh;    /* evita el salto al tocar un paso */
+  animation: turno 24s infinite both;
+}
+#vacio     { animation-delay: 0s; }
+#cargando  { animation-delay: 4s; }
+#respuesta { animation-delay: 8s; }
+#error     { animation-delay: 12s; }
+#delicado  { animation-delay: 16s; }
+#coach     { animation-delay: 20s; }
+
+/* 4 s de 24 s = 16.66 % del ciclo. Entra y sale con un fundido corto. */
+@keyframes turno {
+  0%            { opacity: 0; visibility: hidden; }
+  2%, 15%       { opacity: 1; visibility: visible; }
+  16.66%, 100%  { opacity: 0; visibility: hidden; }
+}
+
+/* Modo manual: si se toca un paso (#id en la URL), se detiene el ciclo
+   y solo se ve ese estado. «▶ Automático» (#auto) no coincide con ningún
+   estado, así que el ciclo vuelve a correr. */
+.estados:has(.estado:target) .estado {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.estados:has(.estado:target) .estado:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Indicador: el paso activo se resalta al mismo ritmo que los estados */
+.paso { animation: resalto 24s infinite both; }
+.paso-1 { animation-delay: 0s; }
+.paso-2 { animation-delay: 4s; }
+.paso-3 { animation-delay: 8s; }
+.paso-4 { animation-delay: 12s; }
+.paso-5 { animation-delay: 16s; }
+.paso-6 { animation-delay: 20s; }
+@keyframes resalto {
+  0%            { background: #fff; color: #181e4b; border-color: #d9d4ff; }
+  0.5%, 16%     { background: #5d44ff; color: #fff; border-color: #5d44ff; }
+  16.66%, 100%  { background: #fff; color: #181e4b; border-color: #d9d4ff; }
+}
+/* En modo manual, el indicador marca el paso elegido */
+body:has(.estado:target) .paso { animation: none; }
+body:has(#vacio:target) .paso-1,
+body:has(#cargando:target) .paso-2,
+body:has(#respuesta:target) .paso-3,
+body:has(#error:target) .paso-4,
+body:has(#delicado:target) .paso-5,
+body:has(#coach:target) .paso-6 { background: #5d44ff; color: #fff; border-color: #5d44ff; }
 
 .conversacion {
-  flex: 1;
   flex-direction: column;
   gap: .75rem;
   padding: 1.25rem;

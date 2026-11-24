@@ -7,14 +7,17 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Navegador de estados: solo para presentar la maqueta (no es parte del producto) -->
+  <!-- Indicador de la demo: los estados cambian solos cada 4 s.
+       Tocar un paso lo deja fijo; «▶ Automático» vuelve a reproducir.
+       Solo sirve para presentar la maqueta (no es parte del producto). -->
   <nav class="demo-nav" aria-label="Estados de la maqueta">
-    <span>Ver estado:</span>
-    <a href="#vacio">1 · Vacío</a>
-    <a href="#cargando">2 · Cargando</a>
-    <a href="#respuesta">3 · Respuesta con fuente</a>
-    <a href="#error">4 · Error / «no sé»</a>
-    <a href="#delicado">5 · Tema delicado</a>
+    <a class="auto" href="#auto">▶ Automático</a>
+    <a class="paso paso-1" href="#vacio">1 · Vacío</a>
+    <a class="paso paso-2" href="#cargando">2 · Cargando</a>
+    <a class="paso paso-3" href="#respuesta">3 · Respuesta</a>
+    <a class="paso paso-4" href="#error">4 · Error</a>
+    <a class="paso paso-5" href="#delicado">5 · Tema delicado</a>
+    <a class="paso paso-6" href="#coach">6 · Coach</a>
   </nav>
 
   <main class="app">
