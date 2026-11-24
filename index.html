@@ -36,7 +36,17 @@
         <a class="auto" href="#auto">▶ Reproducir solo</a>
       </nav>
 
-      <p class="nota-maqueta">Maqueta en HTML y CSS. Todavía no hay un modelo conectado.</p>
+      <!-- Semana 2: las decisiones de uso responsable, visibles y convertidas en código (js/reglas.js) -->
+      <section class="reglas" aria-label="Reglas de uso responsable">
+        <p class="demo-titulo">Reglas de uso responsable</p>
+        <ul>
+          <li><span aria-hidden="true">🔒</span> Oculta correos, celulares, documentos y claves antes de enviar tu pregunta.</li>
+          <li><span aria-hidden="true">🙋</span> Salud, dinero, notas, decisiones sobre personas o producción: decide una persona.</li>
+          <li><span aria-hidden="true">📢</span> Cada respuesta dice que la generó una IA y de qué fuentes sale.</li>
+        </ul>
+      </section>
+
+      <p class="nota-maqueta">Todavía no hay un modelo conectado. Escribe una pregunta para probar las reglas.</p>
     </aside>
 
     <!-- ============ Ventana del asistente (estilo editor) ============ -->
@@ -91,6 +101,7 @@
   <span class="s-prop">align-items</span>: <span class="s-val">center</span>;     <span class="s-com">/* vertical */</span>
 }</code></pre>
             <p class="fuente"><span class="fuente-icono" aria-hidden="true">📄</span> Fuente: <a href="#">MDN Web Docs · Conceptos básicos de flexbox</a></p>
+            <p class="aviso-respuesta" data-fuentes="MDN Web Docs · Conceptos básicos de flexbox">📢 Respuesta generada con IA a partir de 1 fuente: MDN Web Docs · Conceptos básicos de flexbox.</p>
             <div class="acciones">
               <button type="button">Copiar código</button>
               <span class="separa"></span>
@@ -111,6 +122,7 @@
               <li>Revisar el <em>changelog</em> del repositorio de la API.</li>
               <li><a class="humano-inline" href="#mentor">Preguntarle a un mentor del equipo</a>.</li>
             </ul>
+            <p class="aviso-respuesta" data-fuentes="">📢 Respuesta generada con IA sin fuentes: no la uses para tomar decisiones sin verificarla.</p>
           </div>
         </section>
 
@@ -118,8 +130,8 @@
         <section id="delicado" class="estado conversacion" aria-label="Tema delicado">
           <div class="mensaje usuario">Te pego la contraseña de la base de datos de producción para que revises el error.</div>
           <div class="mensaje asistente derivar">
-            <p class="titulo-msg">🔒 No compartas credenciales aquí.</p>
-            <p>Si ya expusiste esa contraseña en algún lugar, cámbiala. Un problema con datos de producción lo revisa una persona del equipo.</p>
+            <p class="titulo-msg" id="delicado-titulo">🔒 No compartas credenciales aquí.</p>
+            <p id="delicado-texto">Si ya expusiste esa contraseña en algún lugar, cámbiala. Un problema con datos de producción lo revisa una persona del equipo.</p>
             <a class="humano" href="#mentor">🙋 Hablar ahora con un mentor</a>
           </div>
         </section>
@@ -149,5 +161,10 @@
       </form>
     </main>
   </div>
+
+  <!-- Semana 2: reglas de uso responsable + conexión con el formulario.
+       Sin JavaScript, la maqueta sigue funcionando solo con CSS. -->
+  <script src="js/reglas.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
