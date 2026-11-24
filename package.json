@@ -1,0 +1,14 @@
+{
+  "name": "asistente-dev",
+  "version": "1.0.0",
+  "description": "Asistente de programación con IA para desarrolladores (Riwi · IA: diseño y criterio)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/reglas.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

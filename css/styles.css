@@ -194,6 +194,18 @@ a { color: inherit; }
   white-space: nowrap;
 }
 .humano:hover { background: #ffc773; }
+
+/* Insignia de conexión con Claude */
+.estado-conexion {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--tenue);
+  white-space: nowrap;
+}
+.estado-conexion.en-linea { color: #57d38c; }
+.nota-maqueta code { font-family: var(--mono); color: var(--cian); font-size: .8rem; }
+.acciones button.elegido { border-color: var(--cian); background: rgba(94, 230, 208, .12); }
+.acciones button:disabled { cursor: default; }
 .humano-inline { color: var(--ambar); font-weight: 700; }
 
 /* Aviso de límites: advertencia de linter, siempre visible */

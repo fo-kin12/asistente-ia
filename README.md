@@ -2,7 +2,43 @@
 
 Prototipo en HTML y CSS de un **asistente de conocimiento para desarrolladores**: responde dudas de programación (HTML, CSS, JavaScript, Git, bases de datos) citando la documentación oficial. Todavía no hay un modelo conectado: es la maqueta.
 
-Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y mira cómo los estados **cambian solos cada 4 segundos** en la misma pantalla (vacío → cargando → respuesta → error → tema delicado → mentor), solo con CSS. **Escribe una pregunta** para probar las reglas de uso responsable de la semana 2. Toca un paso del indicador para dejarlo fijo y **▶ Reproducir solo** para volver al ciclo.
+Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y mira cómo los estados **cambian solos cada 4 segundos** en la misma pantalla (vacío → cargando → respuesta → error → tema delicado → mentor), solo con CSS. **Escribe una pregunta** para probar las reglas de uso responsable de la semana 2. Para que responda Claude de verdad, mira [Conectar Claude](#-conectar-claude-respuestas-reales). Toca un paso del indicador para dejarlo fijo y **▶ Reproducir solo** para volver al ciclo.
+
+## 🤖 Conectar Claude (respuestas reales)
+
+Asistente Dev puede responder con **Claude** a través de un servidor propio. La clave de la API vive en el servidor y **nunca llega al navegador**.
+
+```
+Página  ──/api/preguntar──►  server.js (reglas + clave en .env)  ──►  API de Claude
+        ◄──── respuesta ────                                      ◄──
+```
+
+**1. Crea tu clave** en la consola de Claude: https://platform.claude.com (la API se paga por uso, aparte de claude.ai).
+
+**2. Crea el archivo `.env`** copiando `.env.example` y pon tu clave:
+
+```
+ANTHROPIC_API_KEY=tu-clave-aquí
+```
+
+**3. Arranca el servidor** (Node.js 18 o superior, sin instalar paquetes):
+
+```bash
+npm start        # o: node server.js
+```
+
+**4. Abre** http://localhost:3000. La insignia de la ventana dice **● Claude conectado**.
+
+> Si abres la página con Live Server o sin clave, funciona en **modo maqueta** (respuestas de ejemplo).
+
+**Qué hace el servidor:**
+- Vuelve a aplicar las reglas de la semana 2: oculta datos y no envía a Claude los temas de alto impacto.
+- Le da a Claude sus instrucciones (prompt de sistema): respuestas cortas, citar documentación oficial, decir «no sé» en vez de inventar, no decidir sobre personas, salud, dinero ni producción.
+- Valida la respuesta: solo enlaces `https`, texto plano (sin HTML), límites de tamaño.
+- Solo sirve `index.html`, `css/`, `js/` y `docs/`: el `.env` y el `server.js` no se pueden abrir desde el navegador.
+- No guarda ni registra el contenido de las preguntas.
+
+> Las fuentes las cita el propio modelo. En la etapa de **recuperación con fuentes (RAG)** del macro reto, saldrán de nuestros propios documentos.
 
 ## Semana 2 · IA responsable desde el inicio
 
@@ -26,10 +62,13 @@ node tests/reglas.test.js
 
 ```
 asistente-ia/
+├── server.js           # servidor: reglas + conexión segura con Claude
+├── .env.example        # plantilla para tu clave (el .env real no se sube)
+├── package.json        # npm start / npm test
 ├── index.html          # la interfaz (estados, formulario, reglas visibles)
 ├── css/styles.css      # diseño y ciclo automático de estados (solo CSS)
 ├── js/reglas.js        # semana 2: protegerDatos, requiereHumano, aviso
-├── js/app.js           # semana 2: conecta las reglas con el formulario
+├── js/app.js           # conecta el formulario con las reglas y con el servidor
 ├── tests/reglas.test.js
 ├── DECISIONES.md       # semana 2: evidencia (lista de decisiones)
 ├── README.md
