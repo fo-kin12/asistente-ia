@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asistente del clan · Maqueta</title>
+  <title>Asistente Dev · Maqueta</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -17,51 +17,57 @@
     <a class="paso paso-3" href="#respuesta">3 · Respuesta</a>
     <a class="paso paso-4" href="#error">4 · Error</a>
     <a class="paso paso-5" href="#delicado">5 · Tema delicado</a>
-    <a class="paso paso-6" href="#coach">6 · Coach</a>
+    <a class="paso paso-6" href="#mentor">6 · Mentor</a>
   </nav>
 
   <main class="app">
     <header class="cabecera">
       <div>
-        <h1>Asistente del clan</h1>
-        <p class="subtitulo">Resuelve dudas sobre horarios, entregas y reglas del curso.</p>
+        <h1>Asistente Dev</h1>
+        <p class="subtitulo">Resuelve dudas de programación con la documentación oficial como fuente.</p>
       </div>
-      <a class="humano" href="#coach">🙋 Hablar con un coach</a>
+      <a class="humano" href="#mentor">🙋 Hablar con un mentor</a>
     </header>
 
     <!-- Aviso de límites: siempre visible, no en letra pequeña -->
-    <p class="aviso" role="note">⚠️ Respuestas generadas con IA: pueden contener errores. Revisa la fuente antes de tomar decisiones.</p>
+    <p class="aviso" role="note">⚠️ Respuestas generadas con IA: pueden contener errores. Prueba el código y revisa la fuente antes de usarlo en producción.</p>
 
     <div class="estados">
 
       <!-- ESTADO 1: VACÍO (con sugerencias) -->
       <section id="vacio" class="estado conversacion" aria-label="Estado vacío">
         <div class="bienvenida">
-          <p class="saludo">👋 ¡Hola, coder! ¿En qué te ayudo?</p>
-          <p>Puedo responder sobre el calendario, las entregas y el reglamento. Prueba con:</p>
+          <p class="saludo">👋 ¡Hola, dev! ¿En qué te ayudo?</p>
+          <p>Respondo sobre HTML, CSS, JavaScript, Git y bases de datos, y siempre te digo de qué documentación sale la respuesta. Prueba con:</p>
           <ul class="sugerencias">
-            <li><a href="#cargando">📅 ¿Cuándo es la sesión de IA?</a></li>
-            <li><a href="#respuesta">📦 ¿Qué debo entregar esta semana?</a></li>
-            <li><a href="#error">⏰ ¿Puedo entregar tarde?</a></li>
+            <li><a href="#respuesta">🧩 ¿Cómo centro un div con flexbox?</a></li>
+            <li><a href="#error">📦 ¿Qué cambió en la v5 de nuestra API interna?</a></li>
+            <li><a href="#delicado">🚨 Tengo un error con datos de producción</a></li>
           </ul>
         </div>
       </section>
 
       <!-- ESTADO 2: CARGANDO -->
       <section id="cargando" class="estado conversacion" aria-label="Estado cargando" aria-live="polite">
-        <div class="mensaje usuario">¿Cuándo es la sesión de IA?</div>
+        <div class="mensaje usuario">¿Cómo centro un div con flexbox?</div>
         <div class="mensaje asistente cargando">
-          Pensando<span class="puntos"><span>.</span><span>.</span><span>.</span></span>
+          Buscando en la documentación<span class="puntos"><span>.</span><span>.</span><span>.</span></span>
         </div>
       </section>
 
-      <!-- ESTADO 3: RESPUESTA CON FUENTE -->
+      <!-- ESTADO 3: RESPUESTA CON FUENTE (y código listo para probar) -->
       <section id="respuesta" class="estado conversacion" aria-label="Estado respuesta">
-        <div class="mensaje usuario">¿Cuándo es la sesión de IA?</div>
+        <div class="mensaje usuario">¿Cómo centro un div con flexbox?</div>
         <div class="mensaje asistente">
-          <p>La sesión de IA es el <strong>jueves de 10:00 a 11:00 a. m.</strong>, una por clan.</p>
-          <p class="fuente">📄 Fuente: <a href="#">Calendario del módulo · Semana 1</a></p>
+          <p>Convierte el contenedor en flex y centra en los dos ejes:</p>
+          <pre class="codigo"><code>.contenedor {
+  display: flex;
+  justify-content: center; /* eje horizontal */
+  align-items: center;     /* eje vertical */
+}</code></pre>
+          <p class="fuente">📄 Fuente: <a href="#">MDN Web Docs · Conceptos básicos de flexbox</a></p>
           <div class="acciones">
+            <button type="button">📋 Copiar código</button>
             <span>¿Te sirvió?</span>
             <button type="button" aria-label="Me sirvió">👍</button>
             <button type="button" aria-label="No me sirvió">👎</button>
@@ -71,31 +77,32 @@
 
       <!-- ESTADO 4: ERROR / «NO SÉ» (honesto y con salida) -->
       <section id="error" class="estado conversacion" aria-label="Estado error">
-        <div class="mensaje usuario">¿Puedo entregar tarde el reto?</div>
+        <div class="mensaje usuario">¿Qué cambió en la v5 de nuestra API interna?</div>
         <div class="mensaje asistente error">
-          <p>🤔 No tengo esa información en los documentos del curso, así que prefiero no inventarla.</p>
+          <p>🤔 No encuentro la v5 en la documentación que tengo indexada, así que prefiero no inventar endpoints.</p>
           <p>Puedes:</p>
           <ul>
-            <li>Reformular la pregunta (por ejemplo, «¿cuál es la fecha límite del reto?»).</li>
-            <li><a class="humano-inline" href="#coach">Preguntarle directamente a un coach</a>.</li>
+            <li>Revisar el <em>changelog</em> del repositorio de la API.</li>
+            <li><a class="humano-inline" href="#mentor">Preguntarle a un mentor del equipo</a>.</li>
           </ul>
         </div>
       </section>
 
-      <!-- ESTADO 5: TEMA DELICADO → siempre a una persona -->
+      <!-- ESTADO 5: TEMA DELICADO (credenciales / producción) → siempre a una persona -->
       <section id="delicado" class="estado conversacion" aria-label="Tema delicado">
-        <div class="mensaje usuario">Estoy muy estresado y pensando en retirarme del bootcamp.</div>
+        <div class="mensaje usuario">Te pego la contraseña de la base de datos de producción para que revises el error.</div>
         <div class="mensaje asistente derivar">
-          <p>Gracias por contarlo. Este es un tema importante y prefiero que lo hables con una persona que pueda acompañarte.</p>
-          <a class="humano" href="#coach">🙋 Hablar ahora con un coach</a>
+          <p>🔒 Por seguridad, no compartas credenciales aquí. Si ya la expusiste en algún lugar, cámbiala.</p>
+          <p>Un problema con datos de producción debe revisarlo una persona del equipo.</p>
+          <a class="humano" href="#mentor">🙋 Hablar ahora con un mentor</a>
         </div>
       </section>
 
       <!-- Pantalla de salida a una persona -->
-      <section id="coach" class="estado conversacion" aria-label="Contacto con coach">
+      <section id="mentor" class="estado conversacion" aria-label="Contacto con mentor">
         <div class="mensaje asistente derivar">
-          <p><strong>Te conectamos con un coach.</strong></p>
-          <p>Escríbele por el canal del clan o en el horario de atención: lunes a viernes, 2:00 a 4:00 p. m.</p>
+          <p><strong>Te conectamos con un mentor senior.</strong></p>
+          <p>Escríbele por el canal #ayuda-dev o en el horario de atención: lunes a viernes, 2:00 a 4:00 p. m.</p>
           <a href="#vacio">← Volver al asistente</a>
         </div>
       </section>
@@ -106,7 +113,7 @@
       <label for="pregunta">Tu pregunta</label>
       <div class="fila">
         <input id="pregunta" name="pregunta" type="text"
-               placeholder="Ej.: ¿Cuándo es la sesión de IA?" autocomplete="off">
+               placeholder="Ej.: ¿Cómo centro un div con flexbox?" autocomplete="off">
         <button type="submit">Enviar</button>
       </div>
     </form>

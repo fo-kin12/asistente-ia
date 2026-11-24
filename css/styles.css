@@ -98,7 +98,7 @@ body {
 #respuesta { animation-delay: 8s; }
 #error     { animation-delay: 12s; }
 #delicado  { animation-delay: 16s; }
-#coach     { animation-delay: 20s; }
+#mentor    { animation-delay: 20s; }
 
 /* 4 s de 24 s = 16.66 % del ciclo. Entra y sale con un fundido corto. */
 @keyframes turno {
@@ -140,7 +140,7 @@ body:has(#cargando:target) .paso-2,
 body:has(#respuesta:target) .paso-3,
 body:has(#error:target) .paso-4,
 body:has(#delicado:target) .paso-5,
-body:has(#coach:target) .paso-6 { background: #5d44ff; color: #fff; border-color: #5d44ff; }
+body:has(#mentor:target) .paso-6 { background: #5d44ff; color: #fff; border-color: #5d44ff; }
 
 .conversacion {
   flex-direction: column;
@@ -204,7 +204,20 @@ body:has(#coach:target) .paso-6 { background: #5d44ff; color: #fff; border-color
 }
 .derivar .humano { margin-top: .5rem; }
 
-/* Cargando: «Pensando…» animado */
+/* Bloque de código dentro de la respuesta */
+.codigo {
+  margin: .25rem 0 .6rem;
+  padding: .75rem .9rem;
+  background: #181e4b;
+  color: #e4e1ff;
+  border-radius: 10px;
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  font-size: .85rem;
+  line-height: 1.5;
+  overflow-x: auto;           /* si una línea es larga, se desplaza en vez de romper la burbuja */
+}
+
+/* Cargando: «Buscando en la documentación…» animado */
 .cargando { color: #5b6080; font-style: italic; }
 .puntos span { animation: parpadeo 1.2s infinite; }
 .puntos span:nth-child(2) { animation-delay: .2s; }
