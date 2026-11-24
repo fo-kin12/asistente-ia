@@ -3,6 +3,10 @@
 Prototipo en HTML y CSS del asistente de conocimiento. Todavía no hay un modelo conectado: es la maqueta.
 Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y usa la barra «Ver estado» para recorrer los estados.
 
+## Presentación
+
+📽️ [Ver la presentación del reto (PDF)](docs/presentacion-semana1.pdf): qué pedía el reto, el flujo, los estados, el código y la prueba con otro equipo.
+
 ## Caso de uso
 
 Un coder tiene una duda sobre el curso (horarios, entregas, reglas) y quiere una respuesta corta que pueda verificar.
