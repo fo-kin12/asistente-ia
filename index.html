@@ -4,119 +4,150 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asistente Dev · Maqueta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Indicador de la demo: los estados cambian solos cada 4 s.
-       Tocar un paso lo deja fijo; «▶ Automático» vuelve a reproducir.
-       Solo sirve para presentar la maqueta (no es parte del producto). -->
-  <nav class="demo-nav" aria-label="Estados de la maqueta">
-    <a class="auto" href="#auto">▶ Automático</a>
-    <a class="paso paso-1" href="#vacio">1 · Vacío</a>
-    <a class="paso paso-2" href="#cargando">2 · Cargando</a>
-    <a class="paso paso-3" href="#respuesta">3 · Respuesta</a>
-    <a class="paso paso-4" href="#error">4 · Error</a>
-    <a class="paso paso-5" href="#delicado">5 · Tema delicado</a>
-    <a class="paso paso-6" href="#mentor">6 · Mentor</a>
-  </nav>
+  <div class="escena">
 
-  <main class="app">
-    <header class="cabecera">
-      <div>
-        <h1>Asistente Dev</h1>
-        <p class="subtitulo">Resuelve dudas de programación con la documentación oficial como fuente.</p>
+    <!-- ============ Columna de marca + recorrido de la demo ============ -->
+    <aside class="marca">
+      <div class="logo">
+        <span class="logo-icono" aria-hidden="true">&lt;/&gt;</span>
+        <span class="logo-texto">Asistente Dev</span>
       </div>
-      <a class="humano" href="#mentor">🙋 Hablar con un mentor</a>
-    </header>
+      <p class="lema">Respuestas de programación que puedes comprobar.</p>
 
-    <!-- Aviso de límites: siempre visible, no en letra pequeña -->
-    <p class="aviso" role="note">⚠️ Respuestas generadas con IA: pueden contener errores. Prueba el código y revisa la fuente antes de usarlo en producción.</p>
+      <!-- Indicador de la demo: los estados cambian solos cada 4 s.
+           Tocar un paso lo deja fijo; «Reproducir solo» vuelve al ciclo.
+           Solo sirve para presentar la maqueta (no es parte del producto). -->
+      <nav class="demo-nav" aria-label="Recorrido de la demo">
+        <p class="demo-titulo">Recorrido de la demo</p>
+        <ol class="pasos">
+          <li><a class="paso paso-1" href="#vacio"><span class="paso-n">1</span>Vacío</a></li>
+          <li><a class="paso paso-2" href="#cargando"><span class="paso-n">2</span>Buscando</a></li>
+          <li><a class="paso paso-3" href="#respuesta"><span class="paso-n">3</span>Respuesta con fuente</a></li>
+          <li><a class="paso paso-4" href="#error"><span class="paso-n">4</span>No lo sé</a></li>
+          <li><a class="paso paso-5" href="#delicado"><span class="paso-n">5</span>Tema delicado</a></li>
+          <li><a class="paso paso-6" href="#mentor"><span class="paso-n">6</span>Mentor</a></li>
+        </ol>
+        <a class="auto" href="#auto">▶ Reproducir solo</a>
+      </nav>
 
-    <div class="estados">
+      <p class="nota-maqueta">Maqueta en HTML y CSS. Todavía no hay un modelo conectado.</p>
+    </aside>
 
-      <!-- ESTADO 1: VACÍO (con sugerencias) -->
-      <section id="vacio" class="estado conversacion" aria-label="Estado vacío">
-        <div class="bienvenida">
-          <p class="saludo">👋 ¡Hola, dev! ¿En qué te ayudo?</p>
-          <p>Respondo sobre HTML, CSS, JavaScript, Git y bases de datos, y siempre te digo de qué documentación sale la respuesta. Prueba con:</p>
-          <ul class="sugerencias">
-            <li><a href="#respuesta">🧩 ¿Cómo centro un div con flexbox?</a></li>
-            <li><a href="#error">📦 ¿Qué cambió en la v5 de nuestra API interna?</a></li>
-            <li><a href="#delicado">🚨 Tengo un error con datos de producción</a></li>
-          </ul>
+    <!-- ============ Ventana del asistente (estilo editor) ============ -->
+    <main class="app">
+      <header class="cabecera">
+        <div class="semaforo" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="pestanas" aria-hidden="true">
+          <span class="pestana activa">chat.md</span>
+          <span class="pestana">docs/</span>
         </div>
-      </section>
+        <a class="humano" href="#mentor">🙋 Hablar con un mentor</a>
+      </header>
 
-      <!-- ESTADO 2: CARGANDO -->
-      <section id="cargando" class="estado conversacion" aria-label="Estado cargando" aria-live="polite">
-        <div class="mensaje usuario">¿Cómo centro un div con flexbox?</div>
-        <div class="mensaje asistente cargando">
-          Buscando en la documentación<span class="puntos"><span>.</span><span>.</span><span>.</span></span>
-        </div>
-      </section>
+      <!-- Aviso de límites: siempre visible, con estilo de advertencia de linter -->
+      <p class="aviso" role="note">
+        <span class="aviso-icono" aria-hidden="true">⚠</span>
+        <span>Respuestas generadas con IA: pueden contener errores. Prueba el código y revisa la fuente antes de usarlo en producción.</span>
+      </p>
 
-      <!-- ESTADO 3: RESPUESTA CON FUENTE (y código listo para probar) -->
-      <section id="respuesta" class="estado conversacion" aria-label="Estado respuesta">
-        <div class="mensaje usuario">¿Cómo centro un div con flexbox?</div>
-        <div class="mensaje asistente">
-          <p>Convierte el contenedor en flex y centra en los dos ejes:</p>
-          <pre class="codigo"><code>.contenedor {
-  display: flex;
-  justify-content: center; /* eje horizontal */
-  align-items: center;     /* eje vertical */
-}</code></pre>
-          <p class="fuente">📄 Fuente: <a href="#">MDN Web Docs · Conceptos básicos de flexbox</a></p>
-          <div class="acciones">
-            <button type="button">📋 Copiar código</button>
-            <span>¿Te sirvió?</span>
-            <button type="button" aria-label="Me sirvió">👍</button>
-            <button type="button" aria-label="No me sirvió">👎</button>
+      <div class="estados">
+
+        <!-- ESTADO 1: VACÍO (con sugerencias) -->
+        <section id="vacio" class="estado conversacion" aria-label="Estado vacío">
+          <div class="bienvenida">
+            <h1 class="saludo">¿Qué estás<br>programando hoy?</h1>
+            <p class="intro">Pregunta sobre HTML, CSS, JavaScript, Git o bases de datos. Cada respuesta trae su fuente.</p>
+            <ul class="sugerencias">
+              <li><a href="#respuesta"><span class="etiqueta et-css">CSS</span>¿Cómo centro un div con flexbox?</a></li>
+              <li><a href="#error"><span class="etiqueta et-api">API</span>¿Qué cambió en la v5 de nuestra API interna?</a></li>
+              <li><a href="#delicado"><span class="etiqueta et-seg">Producción</span>Tengo un error con datos de producción</a></li>
+            </ul>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ESTADO 4: ERROR / «NO SÉ» (honesto y con salida) -->
-      <section id="error" class="estado conversacion" aria-label="Estado error">
-        <div class="mensaje usuario">¿Qué cambió en la v5 de nuestra API interna?</div>
-        <div class="mensaje asistente error">
-          <p>🤔 No encuentro la v5 en la documentación que tengo indexada, así que prefiero no inventar endpoints.</p>
-          <p>Puedes:</p>
-          <ul>
-            <li>Revisar el <em>changelog</em> del repositorio de la API.</li>
-            <li><a class="humano-inline" href="#mentor">Preguntarle a un mentor del equipo</a>.</li>
-          </ul>
-        </div>
-      </section>
+        <!-- ESTADO 2: CARGANDO -->
+        <section id="cargando" class="estado conversacion" aria-label="Estado cargando" aria-live="polite">
+          <div class="mensaje usuario">¿Cómo centro un div con flexbox?</div>
+          <div class="mensaje asistente cargando">
+            <p class="buscando">Buscando en la documentación<span class="puntos"><span>.</span><span>.</span><span>.</span></span></p>
+            <div class="esqueleto" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+        </section>
 
-      <!-- ESTADO 5: TEMA DELICADO (credenciales / producción) → siempre a una persona -->
-      <section id="delicado" class="estado conversacion" aria-label="Tema delicado">
-        <div class="mensaje usuario">Te pego la contraseña de la base de datos de producción para que revises el error.</div>
-        <div class="mensaje asistente derivar">
-          <p>🔒 Por seguridad, no compartas credenciales aquí. Si ya la expusiste en algún lugar, cámbiala.</p>
-          <p>Un problema con datos de producción debe revisarlo una persona del equipo.</p>
-          <a class="humano" href="#mentor">🙋 Hablar ahora con un mentor</a>
-        </div>
-      </section>
+        <!-- ESTADO 3: RESPUESTA CON FUENTE (y código listo para probar) -->
+        <section id="respuesta" class="estado conversacion" aria-label="Estado respuesta">
+          <div class="mensaje usuario">¿Cómo centro un div con flexbox?</div>
+          <div class="mensaje asistente">
+            <p>Convierte el contenedor en flex y centra en los dos ejes:</p>
+            <pre class="codigo"><code><span class="s-sel">.contenedor</span> {
+  <span class="s-prop">display</span>: <span class="s-val">flex</span>;
+  <span class="s-prop">justify-content</span>: <span class="s-val">center</span>; <span class="s-com">/* horizontal */</span>
+  <span class="s-prop">align-items</span>: <span class="s-val">center</span>;     <span class="s-com">/* vertical */</span>
+}</code></pre>
+            <p class="fuente"><span class="fuente-icono" aria-hidden="true">📄</span> Fuente: <a href="#">MDN Web Docs · Conceptos básicos de flexbox</a></p>
+            <div class="acciones">
+              <button type="button">Copiar código</button>
+              <span class="separa"></span>
+              <span>¿Te sirvió?</span>
+              <button type="button" aria-label="Me sirvió">👍</button>
+              <button type="button" aria-label="No me sirvió">👎</button>
+            </div>
+          </div>
+        </section>
 
-      <!-- Pantalla de salida a una persona -->
-      <section id="mentor" class="estado conversacion" aria-label="Contacto con mentor">
-        <div class="mensaje asistente derivar">
-          <p><strong>Te conectamos con un mentor senior.</strong></p>
-          <p>Escríbele por el canal #ayuda-dev o en el horario de atención: lunes a viernes, 2:00 a 4:00 p. m.</p>
-          <a href="#vacio">← Volver al asistente</a>
-        </div>
-      </section>
-    </div>
+        <!-- ESTADO 4: ERROR / «NO SÉ» (honesto y con salida) -->
+        <section id="error" class="estado conversacion" aria-label="Estado error">
+          <div class="mensaje usuario">¿Qué cambió en la v5 de nuestra API interna?</div>
+          <div class="mensaje asistente error">
+            <p class="titulo-msg">No encuentro la v5 en la documentación que tengo.</p>
+            <p>Prefiero no inventar endpoints. Puedes:</p>
+            <ul>
+              <li>Revisar el <em>changelog</em> del repositorio de la API.</li>
+              <li><a class="humano-inline" href="#mentor">Preguntarle a un mentor del equipo</a>.</li>
+            </ul>
+          </div>
+        </section>
 
-    <!-- Formulario de consulta: campo claro con ejemplo -->
-    <form class="consulta" action="#cargando">
-      <label for="pregunta">Tu pregunta</label>
-      <div class="fila">
-        <input id="pregunta" name="pregunta" type="text"
-               placeholder="Ej.: ¿Cómo centro un div con flexbox?" autocomplete="off">
-        <button type="submit">Enviar</button>
+        <!-- ESTADO 5: TEMA DELICADO (credenciales / producción) → siempre a una persona -->
+        <section id="delicado" class="estado conversacion" aria-label="Tema delicado">
+          <div class="mensaje usuario">Te pego la contraseña de la base de datos de producción para que revises el error.</div>
+          <div class="mensaje asistente derivar">
+            <p class="titulo-msg">🔒 No compartas credenciales aquí.</p>
+            <p>Si ya expusiste esa contraseña en algún lugar, cámbiala. Un problema con datos de producción lo revisa una persona del equipo.</p>
+            <a class="humano" href="#mentor">🙋 Hablar ahora con un mentor</a>
+          </div>
+        </section>
+
+        <!-- Pantalla de salida a una persona -->
+        <section id="mentor" class="estado conversacion" aria-label="Contacto con mentor">
+          <div class="mensaje asistente derivar tarjeta-mentor">
+            <div class="avatar" aria-hidden="true">🙋</div>
+            <div>
+              <p class="titulo-msg">Te conectamos con un mentor senior.</p>
+              <p>Escríbele por el canal <code>#ayuda-dev</code> o en el horario de atención: lunes a viernes, 2:00 a 4:00 p. m.</p>
+              <a class="volver" href="#vacio">Volver al asistente</a>
+            </div>
+          </div>
+        </section>
       </div>
-    </form>
-  </main>
+
+      <!-- Formulario de consulta: campo claro con ejemplo, estilo línea de comandos -->
+      <form class="consulta" action="#cargando">
+        <label for="pregunta">Tu pregunta</label>
+        <div class="fila">
+          <span class="prompt" aria-hidden="true">›</span>
+          <input id="pregunta" name="pregunta" type="text"
+                 placeholder="Ej.: ¿Cómo centro un div con flexbox?" autocomplete="off">
+          <button type="submit">Enviar <kbd>Enter</kbd></button>
+        </div>
+      </form>
+    </main>
+  </div>
 </body>
 </html>

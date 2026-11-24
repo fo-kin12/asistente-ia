@@ -2,11 +2,22 @@
 
 Prototipo en HTML y CSS de un **asistente de conocimiento para desarrolladores**: responde dudas de programación (HTML, CSS, JavaScript, Git, bases de datos) citando la documentación oficial. Todavía no hay un modelo conectado: es la maqueta.
 
-Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y mira cómo los estados **cambian solos cada 4 segundos** en la misma pantalla (vacío → cargando → respuesta → error → tema delicado → mentor), sin JavaScript. Toca un paso del indicador para dejarlo fijo y **▶ Automático** para volver a reproducir.
+Abre la carpeta en VS Code, haz clic derecho en `index.html` → **Open with Live Server** (o ábrelo en el navegador) y mira cómo los estados **cambian solos cada 4 segundos** en la misma pantalla (vacío → cargando → respuesta → error → tema delicado → mentor), sin JavaScript. Toca un paso del indicador para dejarlo fijo y **▶ Reproducir solo** para volver al ciclo.
 
 ## Presentación
 
 📽️ [Ver la presentación del reto (PDF)](docs/presentacion-semana1.pdf): versión corta para una exposición de 5 minutos (7 diapositivas).
+
+## Diseño de la interfaz
+
+El chat vive dentro de una **ventana de editor de código**, el entorno natural de un desarrollador:
+
+- **Números de línea** en un canal a la izquierda, como en VS Code (contador CSS).
+- **Código con colores de sintaxis** y la fuente en una caja cian, separada de la respuesta.
+- El **aviso de límites** aparece como una advertencia de linter, con subrayado ondulado.
+- La **línea de tiempo** de la izquierda resalta el estado activo y su barra se llena en 4 s.
+- Paleta índigo con violeta (dev), cian (código y fuentes), ámbar (persona/mentor) y coral (error).
+- Tipografías: Bricolage Grotesque (interfaz) y JetBrains Mono (código).
 
 ## Mercado y caso de uso
 
